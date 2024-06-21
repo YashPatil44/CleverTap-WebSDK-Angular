@@ -1,0 +1,98 @@
+<header>
+  <h1>CleverTap</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<main>
+  
+  <div class="container">
+    <div class="form-wrapper">
+      <h2>Signup</h2>
+      <form  [formGroup]="signupForm" (ngSubmit)="onLoginClicked()">
+        <div class="form-group">
+          <input type="text" formControlName="username" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+          <input type="text" formControlName="identity" placeholder="Identity" required>
+        </div>
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" formControlName="phoneNumber" placeholder="Phone Number" required>
+        </div>
+        <div class="button-container">
+        <button id="b1" type="submit">Signup</button>
+      </div>
+      </form>
+</div>
+  <div class="form-wrapper"> 
+  <h2>Additional Info</h2>
+  <form [formGroup]="additionalInfoForm" (ngSubmit)="AdditionalInfo()">
+  
+    <div class="form-group">
+      <input type="text" formControlName="CustomerType" placeholder="Customer Type" required>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="PreferedLanguage" placeholder="Prefered Language" required>
+    </div>
+    <div class="button-container">
+    <button type="submit" id="b2">Submit</button>
+  </div>
+  </form>  
+  
+
+</div>
+<div class="form-wrapper">
+  <h2>Event Push</h2>
+  <div class="button-container">
+  <button id="extraButton"(click)="pushevent()">Event Push</button>
+</div>
+</div>
+<div class="form-wrapper"> 
+  <h2>Event with event properties</h2>
+  <form [formGroup]="eventinfoForm" (ngSubmit)="EventInfoPush()">
+  
+    <div class="form-group">
+      <input type="text" formControlName="ProductName" placeholder="Product Name" required>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="Category" placeholder="Category" required>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="Price" placeholder="Price" required>
+    </div>
+    <div class="button-container">
+    <button type="submit" id="b2">Submit</button>
+  </div>
+  </form>  
+</div>
+
+<div class="form-wrapper">
+  <h2>Charged Event</h2>
+  <div class="button-container">
+  <button (click)="chargedevent()">Charged Event</button>
+</div>
+</div>
+
+<div class="form-wrapper">
+<h2>Notification Channels</h2>
+</div>
+<div id="AngNativeDisplay"></div>
+
+<div class="container">
+<div class="button-row">
+  <button (click)="actionOne()">Push</button>
+  <button (click)="actionTwo()">Web Pop-up</button>
+  <button (click)="actionThree()">Web Inbox</button>
+  <button (click)="actionFour()">Native Display</button>
+</div>
+</div>
+</div> 
+</main>
+<footer>
+  <p>&copy; 2024 My Angular App</p>
+</footer>
