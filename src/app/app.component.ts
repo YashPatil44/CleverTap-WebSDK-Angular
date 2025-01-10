@@ -39,23 +39,52 @@ export class AppComponent {
   title = 'my-angular-app';
 
   onLoginClicked(){
-  const formData = this.signupForm.value;
+//   const formData = this.signupForm.value;
+//   clevertap.onUserLogin.push({
+//   "Site": {
+//     "Name": formData.username,
+//     "Identity": formData.identity,
+//     "Email": formData.email,
+//     "Phone": formData.phoneNumber,     // Phone (with the country code)
+//     "Gender": "M",                     // Can be either M or F
+//     "DOB": new Date('2001-12-22T06:35:31'),                 // Date of Birth. Date object
+//  // optional fields. controls whether the user will be sent email, push etc.
+//     "MSG-email": false,                // Disable email notifications
+//     "MSG-push": true,                  // Enable push notifications
+//     "MSG-sms": true,                   // Enable sms notifications
+//     "MSG-whatsapp": true,              // Enable WhatsApp notifications
+//   }
+//  })
+//  this.signupForm.reset();
+const formData = this.signupForm.value;
+
+  // Push user login data (excluding email) immediately
   clevertap.onUserLogin.push({
-  "Site": {
-    "Name": formData.username,
-    "Identity": formData.identity,
-    "Email": formData.email,
-    "Phone": formData.phoneNumber,     // Phone (with the country code)
-    "Gender": "M",                     // Can be either M or F
-    "DOB": new Date('2001-12-22T06:35:31'),                 // Date of Birth. Date object
- // optional fields. controls whether the user will be sent email, push etc.
-    "MSG-email": false,                // Disable email notifications
-    "MSG-push": true,                  // Enable push notifications
-    "MSG-sms": true,                   // Enable sms notifications
-    "MSG-whatsapp": true,              // Enable WhatsApp notifications
-  }
- })
- this.signupForm.reset();
+    "Site": {
+      "Name": formData.username,
+      "Identity": formData.identity,
+      "Phone": formData.phoneNumber,     // Phone (with the country code)
+      "Gender": "M",                     // Can be either M or F
+      "DOB": new Date('2001-12-22T06:35:31'), // Date of Birth. Date object
+      "MSG-email": false,                // Disable email notifications
+      "MSG-push": true,                  // Enable push notifications
+      "MSG-sms": true,                   // Enable sms notifications
+      "MSG-whatsapp": true,              // Enable WhatsApp notifications
+    }
+  });
+
+  // Delay the email push by 2 seconds using clevertap.profile.push
+  setTimeout(() => {
+    clevertap.profile.push({
+      "Site": {
+        "Email": formData.email  // Pass the email after 2 seconds
+      }
+    });
+    console.log('Email pushed after delay:', formData.email);
+  }, 2000);  // 2000 milliseconds = 2 seconds
+
+  // Reset the form after submission
+  this.signupForm.reset();
   }
   AdditionalInfo() {
      this.additionalInfoForm.valid 
